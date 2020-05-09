@@ -3025,7 +3025,7 @@
                 "hide_title": false,
                 "col_number": "three",
                 "template": "blog",
-                "stackbit_url_path": "/blog"
+                "stackbit_url_path": "/blog/"
             }
         },
         {
@@ -3220,7 +3220,7 @@
                 "subtitle": "This is an optional subtitle for the portfolio page.",
                 "layout_style": "mosaic",
                 "template": "portfolio",
-                "stackbit_url_path": "/portfolio"
+                "stackbit_url_path": "/portfolio/"
             }
         },
         {
