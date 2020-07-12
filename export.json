@@ -2,9 +2,11 @@
     "cmsType": "contentful",
     "projectTitle": "Stackbit Exto Theme",
     "staticDir": "static",
+    "pagesDir": "src/pages",
+    "dataDir": "src/data",
     "uploadDir": "images",
     "pageContentFieldKey": "content",
-    "referenceTypeKey": "type",
+    "objectTypeKey": "type",
     "models": [
         {
             "type": "config",
@@ -14,14 +16,14 @@
         },
         {
             "type": "object",
-            "name": "config_header",
-            "label": "Site Configuration Header Configuration",
+            "name": "header",
+            "label": "Header Configuration",
             "fieldNames": null
         },
         {
             "type": "object",
-            "name": "config_footer",
-            "label": "Site Configuration Footer Configuration",
+            "name": "footer",
+            "label": "Footer Configuration",
             "fieldNames": null
         },
         {
@@ -156,8 +158,8 @@
                 },
                 {
                     "type": "Symbol",
-                    "id": "type",
-                    "name": "Type",
+                    "id": "style",
+                    "name": "Style",
                     "localized": false,
                     "required": true,
                     "validations": [
@@ -194,6 +196,16 @@
                 },
                 {
                     "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
                     "id": "stackbit_model_type",
                     "name": "Stackbit Model Type",
                     "localized": false,
@@ -210,7 +222,7 @@
                 "url": {
                     "widgetId": "singleLine"
                 },
-                "type": {
+                "style": {
                     "widgetId": "default-field-value",
                     "settings": {
                         "defaultValue": "link"
@@ -218,7 +230,7 @@
                 },
                 "icon_class": {
                     "settings": {
-                        "helpText": "Font Awesome icon class name, used only when type is \"icon\"."
+                        "helpText": "Font Awesome icon class name, used only when style is \"icon\"."
                     },
                     "widgetId": "singleLine"
                 },
@@ -227,6 +239,14 @@
                     "settings": {
                         "defaultValue": false
                     }
+                },
+                "type": {
+                    "settings": {
+                        "helpText": "The type of the object",
+                        "defaultValue": "action",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
                 },
                 "stackbit_model_type": {
                     "settings": {
@@ -388,10 +408,10 @@
             }
         },
         {
-            "id": "config_footer",
-            "name": "Site Configuration Footer Configuration",
-            "description": "Model for 'footer' field used in 'config' model",
-            "displayField": null,
+            "id": "footer",
+            "name": "Footer Configuration",
+            "description": null,
+            "displayField": "content",
             "fields": [
                 {
                     "type": "Text",
@@ -457,6 +477,16 @@
                 },
                 {
                     "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
                     "id": "stackbit_model_type",
                     "name": "Stackbit Model Type",
                     "localized": false,
@@ -490,108 +520,13 @@
                         "helpText": "List of social links in the footer."
                     }
                 },
-                "stackbit_model_type": {
+                "type": {
                     "settings": {
-                        "helpText": "Stackbit model type",
-                        "defaultValue": "object",
+                        "helpText": "The type of the object",
+                        "defaultValue": "footer",
                         "readOnly": true
                     },
                     "widgetId": "default-field-value"
-                }
-            }
-        },
-        {
-            "id": "config_header",
-            "name": "Site Configuration Header Configuration",
-            "description": "Model for 'header' field used in 'config' model",
-            "displayField": null,
-            "fields": [
-                {
-                    "type": "Text",
-                    "id": "title",
-                    "name": "Header Title",
-                    "localized": false,
-                    "required": false,
-                    "validations": [],
-                    "disabled": false,
-                    "omitted": false
-                },
-                {
-                    "type": "Link",
-                    "id": "logo_img",
-                    "name": "Logo Image",
-                    "localized": false,
-                    "required": false,
-                    "validations": [],
-                    "disabled": false,
-                    "omitted": false,
-                    "linkType": "Asset"
-                },
-                {
-                    "type": "Boolean",
-                    "id": "has_nav",
-                    "name": "Enable Navigation Menu",
-                    "localized": false,
-                    "required": false,
-                    "validations": [],
-                    "disabled": false,
-                    "omitted": false
-                },
-                {
-                    "type": "Array",
-                    "id": "nav_links",
-                    "name": "Navigation Links",
-                    "localized": false,
-                    "required": false,
-                    "validations": [],
-                    "disabled": false,
-                    "omitted": false,
-                    "items": {
-                        "type": "Link",
-                        "linkType": "Entry",
-                        "validations": [
-                            {
-                                "linkContentType": [
-                                    "action"
-                                ]
-                            }
-                        ]
-                    }
-                },
-                {
-                    "type": "Text",
-                    "id": "stackbit_model_type",
-                    "name": "Stackbit Model Type",
-                    "localized": false,
-                    "required": true,
-                    "validations": [],
-                    "disabled": false,
-                    "omitted": false
-                }
-            ],
-            "editorInterfaceControls": {
-                "title": {
-                    "settings": {
-                        "helpText": "The title displayed in the header if no logo image added."
-                    },
-                    "widgetId": "singleLine"
-                },
-                "logo_img": {
-                    "settings": {
-                        "helpText": "The logo image displayed in the header."
-                    }
-                },
-                "has_nav": {
-                    "settings": {
-                        "helpText": "Display the navigation menu bar in the header.",
-                        "defaultValue": true
-                    },
-                    "widgetId": "default-boolean-value"
-                },
-                "nav_links": {
-                    "settings": {
-                        "helpText": "List of navigation links."
-                    }
                 },
                 "stackbit_model_type": {
                     "settings": {
@@ -607,7 +542,7 @@
             "id": "config",
             "name": "Site Configuration",
             "description": null,
-            "displayField": null,
+            "displayField": "title",
             "fields": [
                 {
                     "type": "Text",
@@ -675,7 +610,7 @@
                     "validations": [
                         {
                             "linkContentType": [
-                                "config_header"
+                                "header"
                             ]
                         }
                     ],
@@ -692,7 +627,7 @@
                     "validations": [
                         {
                             "linkContentType": [
-                                "config_footer"
+                                "footer"
                             ]
                         }
                     ],
@@ -776,7 +711,7 @@
             "fields": [
                 {
                     "type": "Symbol",
-                    "id": "type",
+                    "id": "input_type",
                     "name": "Type",
                     "localized": false,
                     "required": true,
@@ -851,6 +786,16 @@
                 },
                 {
                     "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
                     "id": "stackbit_model_type",
                     "name": "Stackbit Model Type",
                     "localized": false,
@@ -861,7 +806,7 @@
                 }
             ],
             "editorInterfaceControls": {
-                "type": {
+                "input_type": {
                     "settings": {
                         "helpText": "Type of the form field."
                     },
@@ -895,6 +840,14 @@
                     "settings": {
                         "defaultValue": false
                     }
+                },
+                "type": {
+                    "settings": {
+                        "helpText": "The type of the object",
+                        "defaultValue": "form_field",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
                 },
                 "stackbit_model_type": {
                     "settings": {
@@ -966,6 +919,16 @@
                 },
                 {
                     "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
                     "id": "stackbit_model_type",
                     "name": "Stackbit Model Type",
                     "localized": false,
@@ -994,6 +957,135 @@
                     "widgetId": "markdown"
                 },
                 "actions": {},
+                "type": {
+                    "settings": {
+                        "helpText": "The type of the object",
+                        "defaultValue": "grid_item",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
+                },
+                "stackbit_model_type": {
+                    "settings": {
+                        "helpText": "Stackbit model type",
+                        "defaultValue": "object",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
+                }
+            }
+        },
+        {
+            "id": "header",
+            "name": "Header Configuration",
+            "description": null,
+            "displayField": "title",
+            "fields": [
+                {
+                    "type": "Text",
+                    "id": "title",
+                    "name": "Header Title",
+                    "localized": false,
+                    "required": false,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Link",
+                    "id": "logo_img",
+                    "name": "Logo Image",
+                    "localized": false,
+                    "required": false,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false,
+                    "linkType": "Asset"
+                },
+                {
+                    "type": "Boolean",
+                    "id": "has_nav",
+                    "name": "Enable Navigation Menu",
+                    "localized": false,
+                    "required": false,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Array",
+                    "id": "nav_links",
+                    "name": "Navigation Links",
+                    "localized": false,
+                    "required": false,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false,
+                    "items": {
+                        "type": "Link",
+                        "linkType": "Entry",
+                        "validations": [
+                            {
+                                "linkContentType": [
+                                    "action"
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
+                    "id": "stackbit_model_type",
+                    "name": "Stackbit Model Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                }
+            ],
+            "editorInterfaceControls": {
+                "title": {
+                    "settings": {
+                        "helpText": "The title displayed in the header if no logo image added."
+                    },
+                    "widgetId": "singleLine"
+                },
+                "logo_img": {
+                    "settings": {
+                        "helpText": "The logo image displayed in the header."
+                    }
+                },
+                "has_nav": {
+                    "settings": {
+                        "helpText": "Display the navigation menu bar in the header.",
+                        "defaultValue": true
+                    },
+                    "widgetId": "default-boolean-value"
+                },
+                "nav_links": {
+                    "settings": {
+                        "helpText": "List of navigation links."
+                    }
+                },
+                "type": {
+                    "settings": {
+                        "helpText": "The type of the object",
+                        "defaultValue": "header",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
+                },
                 "stackbit_model_type": {
                     "settings": {
                         "helpText": "Stackbit model type",
@@ -1705,7 +1797,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -1756,7 +1848,7 @@
                 "actions": {},
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_content",
                         "readOnly": true
                     },
@@ -1872,7 +1964,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -1933,7 +2025,7 @@
                 },
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_form",
                         "readOnly": true
                     },
@@ -2036,7 +2128,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -2089,7 +2181,7 @@
                 "grid_items": {},
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_grid",
                         "readOnly": true
                     },
@@ -2165,7 +2257,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -2205,7 +2297,7 @@
                 "actions": {},
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_hero",
                         "readOnly": true
                     },
@@ -2307,7 +2399,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -2365,7 +2457,7 @@
                 },
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_portfolio",
                         "readOnly": true
                     },
@@ -2468,7 +2560,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -2521,7 +2613,7 @@
                 "actions": {},
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_posts",
                         "readOnly": true
                     },
@@ -2576,6 +2668,16 @@
                 },
                 {
                     "type": "Text",
+                    "id": "type",
+                    "name": "Object Type",
+                    "localized": false,
+                    "required": true,
+                    "validations": [],
+                    "disabled": false,
+                    "omitted": false
+                },
+                {
+                    "type": "Text",
                     "id": "stackbit_model_type",
                     "name": "Stackbit Model Type",
                     "localized": false,
@@ -2602,6 +2704,14 @@
                         "helpText": "The text content of the testimonial."
                     },
                     "widgetId": "singleLine"
+                },
+                "type": {
+                    "settings": {
+                        "helpText": "The type of the object",
+                        "defaultValue": "testimonial",
+                        "readOnly": true
+                    },
+                    "widgetId": "default-field-value"
                 },
                 "stackbit_model_type": {
                     "settings": {
@@ -2690,7 +2800,7 @@
                 {
                     "type": "Text",
                     "id": "type",
-                    "name": "Reference Type Name",
+                    "name": "Object Type",
                     "localized": false,
                     "required": true,
                     "validations": [],
@@ -2737,7 +2847,7 @@
                 "testimonials": {},
                 "type": {
                     "settings": {
-                        "helpText": "Name of the Stackbit object model, used by fields of type reference",
+                        "helpText": "The type of the object",
                         "defaultValue": "section_testimonials",
                         "readOnly": true
                     },
@@ -2907,95 +3017,108 @@
                 "color_scheme": "light",
                 "accent_color": "pink",
                 "header": {
-                    "stackbit_model_type": "object",
+                    "type": "header",
                     "title": "Exto",
                     "has_nav": true,
                     "nav_links": [
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Home",
                             "url": "/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Portfolio",
                             "url": "/portfolio/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Blog",
                             "url": "/blog/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Style Guide",
                             "url": "/style-guide/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "About",
                             "url": "/about/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Contact",
                             "url": "/contact/",
-                            "type": "link"
+                            "style": "link",
+                            "stackbit_model_type": "object"
                         }
-                    ]
+                    ],
+                    "stackbit_model_type": "object"
                 },
                 "footer": {
-                    "stackbit_model_type": "object",
+                    "type": "footer",
                     "content": "&copy; Stackbit-Exto. All rights reserved.",
                     "links": [
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Made with Stackbit.",
                             "url": "https://www.stackbit.com",
-                            "type": "link",
-                            "new_window": true
+                            "style": "link",
+                            "new_window": true,
+                            "stackbit_model_type": "object"
                         }
                     ],
                     "has_social": true,
                     "social_links": [
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Twitter",
                             "url": "https://twitter.com/",
-                            "type": "icon",
+                            "style": "icon",
                             "icon_class": "fa-twitter",
-                            "new_window": true
+                            "new_window": true,
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Instagram",
                             "url": "https://www.instagram.com/",
-                            "type": "icon",
+                            "style": "icon",
                             "icon_class": "fa-instagram",
-                            "new_window": true
+                            "new_window": true,
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "Dribbble",
                             "url": "https://dribbble.com/",
-                            "type": "icon",
+                            "style": "icon",
                             "icon_class": "fa-dribbble",
-                            "new_window": true
+                            "new_window": true,
+                            "stackbit_model_type": "object"
                         },
                         {
-                            "stackbit_model_type": "object",
+                            "type": "action",
                             "label": "LinkedIn",
                             "url": "https://www.linkedin.com/",
-                            "type": "icon",
+                            "style": "icon",
                             "icon_class": "fa-linkedin",
-                            "new_window": true
+                            "new_window": true,
+                            "stackbit_model_type": "object"
                         }
-                    ]
+                    ],
+                    "stackbit_model_type": "object"
                 },
                 "stackbit_file_path": "site-metadata.json"
             }
@@ -3016,6 +3139,56 @@
         },
         {
             "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/function-of-design.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The function of design is letting design function",
+                "subtitle": "A interesting tale about function of design ",
+                "date": "2018-01-15",
+                "thumb_image": "images/4.jpg",
+                "image": "images/4.jpg",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                "template": "post",
+                "stackbit_url_path": "/blog/function-of-design",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet sit amet cursus sit amet dictum sit. Duis ut diam quam nulla porttitor massa id neque. Ut tortor pretium viverra suspendisse potenti nullam. Auctor elit sed vulputate mi sit amet mauris commodo. Dui ut ornare lectus sit amet est placerat. Et malesuada fames ac turpis. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Varius morbi enim nunc faucibus a pellentesque. Erat imperdiet sed euismod nisi porta. Viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas. Dui ut ornare lectus sit amet est placerat in. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Nullam vehicula ipsum a arcu cursus vitae congue mauris.\n\nAenean sed adipiscing diam donec. Id donec ultrices tincidunt arcu non sodales. Orci ac auctor augue mauris augue neque gravida in. Mattis enim ut tellus elementum sagittis vitae et leo duis. Tortor pretium viverra suspendisse potenti nullam. Malesuada proin libero nunc consequat. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Mauris vitae ultricies leo integer malesuada nunc. Eget magna fermentum iaculis eu. Molestie at elementum eu facilisis. Dui faucibus in ornare quam viverra orci sagittis. Aliquam ultrices sagittis orci a scelerisque purus semper eget.\n\nTellus mauris a diam maecenas sed enim. Enim facilisis gravida neque convallis a cras. Sollicitudin nibh sit amet commodo nulla facilisi. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Semper viverra nam libero justo laoreet sit. Vestibulum sed arcu non odio euismod lacinia at quis risus. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Aliquam sem et tortor consequat id porta nibh venenatis cras. Et leo duis ut diam quam nulla porttitor massa id. Sagittis vitae et leo duis ut diam quam. Vitae aliquet nec ullamcorper sit amet. Egestas egestas fringilla phasellus faucibus. Elit pellentesque habitant morbi tristique senectus et netus et. Sagittis purus sit amet volutpat consequat mauris nunc. Commodo odio aenean sed adipiscing. Aliquet eget sit amet tellus cras adipiscing. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Justo eget magna fermentum iaculis eu non.\n\nMi quis hendrerit dolor magna. Vel facilisis volutpat est velit egestas dui id ornare arcu. Sed sed risus pretium quam vulputate. Quam viverra orci sagittis eu volutpat odio facilisis mauris. Enim eu turpis egestas pretium. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Turpis egestas pretium aenean pharetra magna ac. Enim diam vulputate ut pharetra sit amet aliquam id. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Amet nulla facilisi morbi tempus. Aliquet bibendum enim facilisis gravida neque convallis. Nulla pharetra diam sit amet. Vitae nunc sed velit dignissim sodales ut.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/games.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "What are some of the best designed video games",
+                "date": "2018-01-09",
+                "thumb_image": "images/6.jpg",
+                "image": "images/6.jpg",
+                "excerpt": "Diam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.",
+                "template": "post",
+                "stackbit_url_path": "/blog/games",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum nisi quis eleifend quam adipiscing vitae proin. Fermentum dui faucibus in ornare quam viverra orci sagittis. Nunc mattis enim ut tellus elementum sagittis. Sed nisi lacus sed viverra tellus. Lectus arcu bibendum at varius vel. Lacus laoreet non curabitur gravida arcu. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Eget dolor morbi non arcu. Volutpat est velit egestas dui id ornare arcu. Orci porta non pulvinar neque laoreet suspendisse interdum. Odio euismod lacinia at quis risus. Iaculis nunc sed augue lacus viverra. Suspendisse in est ante in nibh mauris cursus. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Non odio euismod lacinia at quis risus sed vulputate. Semper viverra nam libero justo. Amet cursus sit amet dictum sit.\n\nDiam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Mauris augue neque gravida in fermentum et. Tincidunt lobortis feugiat vivamus at augue. Iaculis urna id volutpat lacus laoreet. Risus feugiat in ante metus dictum at tempor commodo. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Enim eu turpis egestas pretium aenean pharetra magna. Urna cursus eget nunc scelerisque viverra mauris in aliquam. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. A cras semper auctor neque vitae. Rhoncus dolor purus non enim praesent elementum facilisis. Nam aliquam sem et tortor consequat id porta nibh venenatis. Sollicitudin ac orci phasellus egestas tellus. Et magnis dis parturient montes nascetur ridiculus.\n\nTincidunt lobortis feugiat vivamus at augue eget arcu. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Non nisi est sit amet facilisis magna etiam tempor. Et egestas quis ipsum suspendisse. Turpis egestas pretium aenean pharetra magna. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Diam in arcu cursus euismod quis viverra nibh cras. Ornare lectus sit amet est placerat in egestas erat imperdiet. Adipiscing enim eu turpis egestas pretium. Sit amet est placerat in egestas. Euismod lacinia at quis risus sed vulputate odio. Quis commodo odio aenean sed adipiscing diam. Fermentum et sollicitudin ac orci phasellus. Eget aliquet nibh praesent tristique magna. Quisque sagittis purus sit amet volutpat consequat. Diam quis enim lobortis scelerisque fermentum dui. Leo urna molestie at elementum eu facilisis sed. Eget nulla facilisi etiam dignissim. Volutpat odio facilisis mauris sit amet."
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/green.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Green is my favorite color",
+                "subtitle": "Apparently, green is my favorite color.",
+                "date": "2018-01-11",
+                "thumb_image": "images/5.jpg",
+                "image": "images/5.jpg",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit.",
+                "template": "post",
+                "stackbit_url_path": "/blog/green",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit. Tincidunt id aliquet risus feugiat in ante. Non diam phasellus vestibulum lorem sed. Morbi quis commodo odio aenean. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Vel eros donec ac odio tempor orci dapibus ultrices. Facilisi morbi tempus iaculis urna id volutpat. Luctus accumsan tortor posuere ac. Sagittis orci a scelerisque purus semper eget. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Dolor purus non enim praesent. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Aliquam vestibulum morbi blandit cursus risus.\n\nScelerisque fermentum dui faucibus in ornare quam viverra orci. Libero justo laoreet sit amet cursus. Gravida rutrum quisque non tellus orci. Ut sem nulla pharetra diam sit amet nisl suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Urna porttitor rhoncus dolor purus. Quisque non tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin. Vitae semper quis lectus nulla at volutpat. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Porta nibh venenatis cras sed felis eget velit. Ullamcorper malesuada proin libero nunc consequat interdum. Enim sed faucibus turpis in eu mi bibendum neque egestas. Facilisi morbi tempus iaculis urna. Rhoncus est pellentesque elit ullamcorper dignissim. Aenean et tortor at risus viverra adipiscing at in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Sit amet aliquam id diam. Ut tristique et egestas quis ipsum suspendisse. Congue quisque egestas diam in arcu cursus.\n\nMattis enim ut tellus elementum sagittis. At volutpat diam ut venenatis tellus in metus vulputate eu. Habitant morbi tristique senectus et. Id aliquet lectus proin nibh nisl condimentum id venenatis. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Lectus vestibulum mattis ullamcorper velit sed. Semper viverra nam libero justo. Purus sit amet luctus venenatis. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Feugiat nibh sed pulvinar proin gravida.\n"
+            }
+        },
+        {
+            "modelType": "page",
             "modelName": "blog",
             "relPath": "blog/index.md",
             "data": {
@@ -3030,6 +3203,86 @@
         },
         {
             "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/interior-designer.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "How To Choose An Interior Designer",
+                "subtitle": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”.",
+                "date": "2017-03-26",
+                "thumb_image": "images/1.jpg",
+                "excerpt": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”. An interior designer is someone who coordinates and manages such projects.",
+                "template": "post",
+                "stackbit_url_path": "/blog/interior-designer",
+                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/street-photography.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Understanding Street Photography",
+                "date": "2019-03-10",
+                "thumb_image": "images/8.jpg",
+                "image": "images/8.jpg",
+                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra.",
+                "template": "post",
+                "stackbit_url_path": "/blog/street-photography",
+                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit. Tincidunt id aliquet risus feugiat in ante. Non diam phasellus vestibulum lorem sed. Morbi quis commodo odio aenean. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Vel eros donec ac odio tempor orci dapibus ultrices. Facilisi morbi tempus iaculis urna id volutpat. Luctus accumsan tortor posuere ac. Sagittis orci a scelerisque purus semper eget. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Dolor purus non enim praesent. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Aliquam vestibulum morbi blandit cursus risus.\n\nScelerisque fermentum dui faucibus in ornare quam viverra orci. Libero justo laoreet sit amet cursus. Gravida rutrum quisque non tellus orci. Ut sem nulla pharetra diam sit amet nisl suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Urna porttitor rhoncus dolor purus. Quisque non tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin. Vitae semper quis lectus nulla at volutpat. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Porta nibh venenatis cras sed felis eget velit. Ullamcorper malesuada proin libero nunc consequat interdum. Enim sed faucibus turpis in eu mi bibendum neque egestas. Facilisi morbi tempus iaculis urna. Rhoncus est pellentesque elit ullamcorper dignissim. Aenean et tortor at risus viverra adipiscing at in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Sit amet aliquam id diam. Ut tristique et egestas quis ipsum suspendisse. Congue quisque egestas diam in arcu cursus.\n\nMattis enim ut tellus elementum sagittis. At volutpat diam ut venenatis tellus in metus vulputate eu. Habitant morbi tristique senectus et. Id aliquet lectus proin nibh nisl condimentum id venenatis. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Lectus vestibulum mattis ullamcorper velit sed. Semper viverra nam libero justo. Purus sit amet luctus venenatis. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Feugiat nibh sed pulvinar proin gravida."
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/why-fonts-matter.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "Why Fonts Matter",
+                "date": "2019-03-27",
+                "thumb_image": "images/12.jpg",
+                "image": "images/12.jpg",
+                "excerpt": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem.",
+                "template": "post",
+                "stackbit_url_path": "/blog/why-fonts-matter",
+                "content": "\n**Donec neque lorem**, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat.\n\nPhasellus commodo dolor sit amet, consectetur adipiscing elit. Nam a finibus magna. Sed et pulvinar dolor. Suspendisse vitae iaculis lacus. Proin vulputate, leo eget pulvinar faucibus, felis est condimentum lorem, in rhoncus neque felis ac leo. Duis felis lectus, ultrices id dolor vel, tincidunt tristique nunc. Nullam quis orci magna. Proin eget nunc et dolor hendrerit eleifend. Praesent a vehicula justo, quis convallis lacus. Phasellus porttitor, turpis vel placerat condimentum, urna felis volutpat ligula, et ultricies arcu mi ac nisl. Cras id consectetur ligula, et mollis odio. Aenean erat dui, congue vitae nisi a, aliquet lobortis eros.\n\n> The beauty of type lies in its utility, prettiness without readability serves neither author nor reader. - James Felici\n\nSed augue lorem, porta nec lorem et, luctus egestas nunc. Sed in tellus at enim commodo pharetra. Mauris nisi ipsum, auctor nec justo non, lobortis ullamcorper magna. Pellentesque posuere posuere dolor, quis egestas est ultrices id. Cras at urna lectus. Curabitur in placerat ligula. Phasellus pharetra scelerisque lectus, id sagittis lorem pretium eget. Phasellus commodo nunc ante, nec commodo urna iaculis eu. Pellentesque euismod et ante quis vestibulum. Ut quis sapien nisi. Sed interdum sit amet sem et vestibulum. Maecenas tempor dictum leo, quis rutrum purus tincidunt vitae. Fusce vel turpis risus. Donec congue accumsan tempus. Nunc nec elit magna. Aenean luctus auctor ligula at lacinia.\n\nDonec neque lorem, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat. Maecenas pretium velit faucibus, porttitor lacus eu, eleifend sapien. In hac habitasse platea dictumst. Pellentesque nisi nisl, consectetur a accumsan sit amet, finibus vel nibh. Vivamus aliquet urna non turpis vehicula maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/working-from-home.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The Advantages and Disadvantages of Working from Home",
+                "date": "2016-08-22",
+                "thumb_image": "images/9.jpg",
+                "image": "images/9.jpg",
+                "excerpt": "Interdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit.",
+                "template": "post",
+                "stackbit_url_path": "/blog/working-from-home",
+                "content": "\nInterdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Vitae aliquet nec ullamcorper sit. Gravida arcu ac tortor dignissim convallis aenean. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Est ultricies integer quis auctor. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Vel risus commodo viverra maecenas accumsan lacus. Donec adipiscing tristique risus nec feugiat in fermentum. Habitasse platea dictumst quisque sagittis purus sit. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Id leo in vitae turpis massa sed. Auctor elit sed vulputate mi sit. Gravida arcu ac tortor dignissim convallis aenean et.\n\n## Types Of Work\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor augue mauris augue neque gravida in fermentum et. Eget mi proin sed libero enim sed faucibus turpis in. Semper auctor neque vitae tempus. Nibh nisl condimentum id venenatis a condimentum vitae sapien. Et malesuada fames ac turpis egestas sed tempus urna. Tristique magna sit amet purus gravida. Lobortis elementum nibh tellus molestie. Natoque penatibus et magnis dis parturient montes nascetur. Lacus sed viverra tellus in hac habitasse platea. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Vitae congue eu consequat ac felis donec et. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. In nibh mauris cursus mattis molestie. Proin libero nunc consequat interdum varius sit amet. Molestie at elementum eu facilisis sed odio morbi quis commodo.\n\nVitae congue mauris rhoncus aenean vel elit scelerisque mauris. Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Eget arcu dictum varius duis at consectetur lorem. Nec ullamcorper sit amet risus nullam eget felis. Laoreet non curabitur gravida arcu ac tortor. Cursus metus aliquam eleifend mi in. Faucibus vitae aliquet nec ullamcorper sit amet. Consectetur a erat nam at lectus urna. Porttitor eget dolor morbi non arcu risus quis varius quam. Condimentum mattis pellentesque id nibh tortor id aliquet. Augue neque gravida in fermentum..\n"
+            }
+        },
+        {
+            "modelType": "page",
+            "modelName": "post",
+            "relPath": "blog/workplace.md",
+            "data": {
+                "stackbit_model_type": "page",
+                "title": "The Elements of Great Workplace Design",
+                "date": "2019-03-24",
+                "thumb_image": "images/11.jpg",
+                "image": "images/11.jpg",
+                "excerpt": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo.",
+                "template": "post",
+                "stackbit_url_path": "/blog/workplace",
+                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
+            }
+        },
+        {
+            "modelType": "page",
             "modelName": "advanced",
             "relPath": "contact.md",
             "data": {
@@ -3038,7 +3291,6 @@
                 "hide_title": false,
                 "sections": [
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_form",
                         "section_id": "contact-form",
                         "content": "Hi there! Thank you so much for your interest in working together. Please fill the contact form below or send us an email at [example@example.com](mailto:example@example.com).",
@@ -3046,24 +3298,26 @@
                         "form_action": "/thank-you",
                         "form_fields": [
                             {
-                                "stackbit_model_type": "object",
-                                "type": "text",
+                                "type": "form_field",
+                                "input_type": "text",
                                 "name": "name",
                                 "label": "Name",
                                 "default_value": "Your name",
-                                "is_required": true
+                                "is_required": true,
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
-                                "type": "email",
+                                "type": "form_field",
+                                "input_type": "email",
                                 "name": "email",
                                 "label": "Email",
                                 "default_value": "Your email address",
-                                "is_required": true
+                                "is_required": true,
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
-                                "type": "select",
+                                "type": "form_field",
+                                "input_type": "select",
                                 "name": "subject",
                                 "label": "Subject",
                                 "default_value": "Please select",
@@ -3071,23 +3325,27 @@
                                     "Error on the site",
                                     "Sponsorship",
                                     "Other"
-                                ]
+                                ],
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
-                                "type": "textarea",
+                                "type": "form_field",
+                                "input_type": "textarea",
                                 "name": "message",
                                 "label": "Message",
-                                "default_value": "Your message"
+                                "default_value": "Your message",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
-                                "type": "checkbox",
+                                "type": "form_field",
+                                "input_type": "checkbox",
                                 "name": "consent",
-                                "label": "I understand that this form is storing my submitted information so I can be contacted."
+                                "label": "I understand that this form is storing my submitted information so I can be contacted.",
+                                "stackbit_model_type": "object"
                             }
                         ],
-                        "submit_label": "Send Message"
+                        "submit_label": "Send Message",
+                        "stackbit_model_type": "object"
                     }
                 ],
                 "template": "advanced",
@@ -3104,22 +3362,22 @@
                 "hide_title": true,
                 "sections": [
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_hero",
                         "title": "Hi, I'm Stackbit Exto Portfolio Theme.",
                         "section_id": "hero",
                         "content": "This section can contain a subtitle or tagline. The recommended length is one to three sentences, but can be changed as you prefer.",
                         "actions": [
                             {
-                                "stackbit_model_type": "object",
+                                "type": "action",
                                 "label": "Let's talk",
                                 "url": "/contact",
-                                "type": "button"
+                                "style": "button",
+                                "stackbit_model_type": "object"
                             }
-                        ]
+                        ],
+                        "stackbit_model_type": "object"
                     },
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_portfolio",
                         "title": "Recent Work",
                         "section_id": "latest-projects",
@@ -3127,10 +3385,10 @@
                         "layout_style": "mosaic",
                         "projects_number": 6,
                         "view_all_label": "View All",
-                        "view_all_url": "portfolio/index.html"
+                        "view_all_url": "portfolio/index.html",
+                        "stackbit_model_type": "object"
                     },
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_grid",
                         "title": "What We Do",
                         "section_id": "services",
@@ -3139,29 +3397,33 @@
                         "is_numbered": true,
                         "grid_items": [
                             {
-                                "stackbit_model_type": "object",
+                                "type": "grid_item",
                                 "title": "Service Title",
-                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla, fringilla ."
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla, fringilla.",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
+                                "type": "grid_item",
                                 "title": "Service Title",
-                                "content": "Donec lobortis velit sed suscipit lobortis. Ut non quam metus. Nullam a maximus mi. Quisque justo nunc, sollicitudin euismod euismod at, tincidunt ut tellus."
+                                "content": "Donec lobortis velit sed suscipit lobortis. Ut non quam metus. Nullam a maximus mi. Quisque justo nunc, sollicitudin euismod euismod at, tincidunt ut tellus.",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
+                                "type": "grid_item",
                                 "title": "Service Title",
-                                "content": "Sed laoreet magna commodo libero euismod sodales. Nunc ac libero convallis, interdum ligula vel, pretium diam. Integer commodo sem at dui sollicitudin."
+                                "content": "Sed laoreet magna commodo libero euismod sodales. Nunc ac libero convallis, interdum ligula vel, pretium diam. Integer commodo sem at dui sollicitudin.",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
+                                "type": "grid_item",
                                 "title": "Service title",
-                                "content": "Vestibulum a nunc ut eros condimentum posuere. Nullam dapibus quis nunc non interdum. Pellentesque tortor ligula, gravida ac commodo eu."
+                                "content": "Vestibulum a nunc ut eros condimentum posuere. Nullam dapibus quis nunc non interdum. Pellentesque tortor ligula, gravida ac commodo eu.",
+                                "stackbit_model_type": "object"
                             }
-                        ]
+                        ],
+                        "stackbit_model_type": "object"
                     },
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_testimonials",
                         "title": "Testimonials",
                         "section_id": "testimonials",
@@ -3169,27 +3431,30 @@
                         "col_number": "three",
                         "testimonials": [
                             {
-                                "stackbit_model_type": "object",
+                                "type": "testimonial",
                                 "author": "Sean Salazar",
                                 "avatar": "images/sean_salazar.jpg",
-                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla."
+                                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisl ligula, cursus id molestie vel, maximus aliquet risus. Vivamus in nibh fringilla.",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
+                                "type": "testimonial",
                                 "author": "Aubrey Hoover",
                                 "avatar": "images/aubrey_hoover.jpg",
-                                "content": "Vestibulum a nunc ut eros condimentum posuere. Nullam dapibus quis nunc non interdum. Pellentesque tortor ligula, gravida ac commodo eu."
+                                "content": "Vestibulum a nunc ut eros condimentum posuere. Nullam dapibus quis nunc non interdum. Pellentesque tortor ligula, gravida ac commodo eu.",
+                                "stackbit_model_type": "object"
                             },
                             {
-                                "stackbit_model_type": "object",
+                                "type": "testimonial",
                                 "author": "Deegan Wallace",
                                 "avatar": "images/deegan_wallace.jpg",
-                                "content": "Sed laoreet magna commodo libero euismod sodales. Nunc ac libero convallis, interdum ligula vel, pretium diam."
+                                "content": "Sed laoreet magna commodo libero euismod sodales. Nunc ac libero convallis, interdum ligula vel, pretium diam.",
+                                "stackbit_model_type": "object"
                             }
-                        ]
+                        ],
+                        "stackbit_model_type": "object"
                     },
                     {
-                        "stackbit_model_type": "object",
                         "type": "section_posts",
                         "title": "Latest from the Blog",
                         "section_id": "latest-posts",
@@ -3198,12 +3463,14 @@
                         "col_number": "three",
                         "actions": [
                             {
-                                "stackbit_model_type": "object",
+                                "type": "action",
                                 "label": "View Blog",
                                 "url": "blog/index.html",
-                                "type": "button"
+                                "style": "button",
+                                "stackbit_model_type": "object"
                             }
-                        ]
+                        ],
+                        "stackbit_model_type": "object"
                     }
                 ],
                 "template": "advanced",
@@ -3225,138 +3492,8 @@
         },
         {
             "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/function-of-design.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "The function of design is letting design function",
-                "subtitle": "A interesting tale about function of design ",
-                "date": "2018-01-15",
-                "thumb_image": "images/4.jpg",
-                "image": "images/4.jpg",
-                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-                "template": "post",
-                "stackbit_url_path": "/posts/function-of-design",
-                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Laoreet sit amet cursus sit amet dictum sit. Duis ut diam quam nulla porttitor massa id neque. Ut tortor pretium viverra suspendisse potenti nullam. Auctor elit sed vulputate mi sit amet mauris commodo. Dui ut ornare lectus sit amet est placerat. Et malesuada fames ac turpis. Nunc vel risus commodo viverra maecenas accumsan lacus vel. Varius morbi enim nunc faucibus a pellentesque. Erat imperdiet sed euismod nisi porta. Viverra maecenas accumsan lacus vel facilisis volutpat est velit egestas. Dui ut ornare lectus sit amet est placerat in. Vitae sapien pellentesque habitant morbi tristique senectus et netus et. Nullam vehicula ipsum a arcu cursus vitae congue mauris.\n\nAenean sed adipiscing diam donec. Id donec ultrices tincidunt arcu non sodales. Orci ac auctor augue mauris augue neque gravida in. Mattis enim ut tellus elementum sagittis vitae et leo duis. Tortor pretium viverra suspendisse potenti nullam. Malesuada proin libero nunc consequat. Commodo viverra maecenas accumsan lacus vel facilisis volutpat est velit. Mauris vitae ultricies leo integer malesuada nunc. Eget magna fermentum iaculis eu. Molestie at elementum eu facilisis. Dui faucibus in ornare quam viverra orci sagittis. Aliquam ultrices sagittis orci a scelerisque purus semper eget.\n\nTellus mauris a diam maecenas sed enim. Enim facilisis gravida neque convallis a cras. Sollicitudin nibh sit amet commodo nulla facilisi. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Semper viverra nam libero justo laoreet sit. Vestibulum sed arcu non odio euismod lacinia at quis risus. Viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis. Aliquam sem et tortor consequat id porta nibh venenatis cras. Et leo duis ut diam quam nulla porttitor massa id. Sagittis vitae et leo duis ut diam quam. Vitae aliquet nec ullamcorper sit amet. Egestas egestas fringilla phasellus faucibus. Elit pellentesque habitant morbi tristique senectus et netus et. Sagittis purus sit amet volutpat consequat mauris nunc. Commodo odio aenean sed adipiscing. Aliquet eget sit amet tellus cras adipiscing. Odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus. Justo eget magna fermentum iaculis eu non.\n\nMi quis hendrerit dolor magna. Vel facilisis volutpat est velit egestas dui id ornare arcu. Sed sed risus pretium quam vulputate. Quam viverra orci sagittis eu volutpat odio facilisis mauris. Enim eu turpis egestas pretium. Lorem ipsum dolor sit amet consectetur adipiscing elit duis. Turpis egestas pretium aenean pharetra magna ac. Enim diam vulputate ut pharetra sit amet aliquam id. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Amet nulla facilisi morbi tempus. Aliquet bibendum enim facilisis gravida neque convallis. Nulla pharetra diam sit amet. Vitae nunc sed velit dignissim sodales ut.\n"
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/games.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "What are some of the best designed video games",
-                "date": "2018-01-09",
-                "thumb_image": "images/6.jpg",
-                "image": "images/6.jpg",
-                "excerpt": "Diam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi.",
-                "template": "post",
-                "stackbit_url_path": "/posts/games",
-                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum nisi quis eleifend quam adipiscing vitae proin. Fermentum dui faucibus in ornare quam viverra orci sagittis. Nunc mattis enim ut tellus elementum sagittis. Sed nisi lacus sed viverra tellus. Lectus arcu bibendum at varius vel. Lacus laoreet non curabitur gravida arcu. Ipsum dolor sit amet consectetur adipiscing elit ut aliquam purus. Ullamcorper velit sed ullamcorper morbi tincidunt ornare massa eget. Tellus pellentesque eu tincidunt tortor aliquam nulla facilisi cras. Eget dolor morbi non arcu. Volutpat est velit egestas dui id ornare arcu. Orci porta non pulvinar neque laoreet suspendisse interdum. Odio euismod lacinia at quis risus. Iaculis nunc sed augue lacus viverra. Suspendisse in est ante in nibh mauris cursus. Consectetur adipiscing elit ut aliquam purus sit amet luctus venenatis. Non odio euismod lacinia at quis risus sed vulputate. Semper viverra nam libero justo. Amet cursus sit amet dictum sit.\n\nDiam sit amet nisl suscipit adipiscing bibendum est ultricies integer. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Mauris augue neque gravida in fermentum et. Tincidunt lobortis feugiat vivamus at augue. Iaculis urna id volutpat lacus laoreet. Risus feugiat in ante metus dictum at tempor commodo. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Enim eu turpis egestas pretium aenean pharetra magna. Urna cursus eget nunc scelerisque viverra mauris in aliquam. Vulputate dignissim suspendisse in est ante in nibh mauris cursus. A cras semper auctor neque vitae. Rhoncus dolor purus non enim praesent elementum facilisis. Nam aliquam sem et tortor consequat id porta nibh venenatis. Sollicitudin ac orci phasellus egestas tellus. Et magnis dis parturient montes nascetur ridiculus.\n\nTincidunt lobortis feugiat vivamus at augue eget arcu. Est lorem ipsum dolor sit amet consectetur adipiscing elit. Non nisi est sit amet facilisis magna etiam tempor. Et egestas quis ipsum suspendisse. Turpis egestas pretium aenean pharetra magna. Diam sollicitudin tempor id eu nisl nunc mi ipsum. Diam in arcu cursus euismod quis viverra nibh cras. Ornare lectus sit amet est placerat in egestas erat imperdiet. Adipiscing enim eu turpis egestas pretium. Sit amet est placerat in egestas. Euismod lacinia at quis risus sed vulputate odio. Quis commodo odio aenean sed adipiscing diam. Fermentum et sollicitudin ac orci phasellus. Eget aliquet nibh praesent tristique magna. Quisque sagittis purus sit amet volutpat consequat. Diam quis enim lobortis scelerisque fermentum dui. Leo urna molestie at elementum eu facilisis sed. Eget nulla facilisi etiam dignissim. Volutpat odio facilisis mauris sit amet."
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/green.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "Green is my favorite color",
-                "subtitle": "Apparently, green is my favorite color.",
-                "date": "2018-01-11",
-                "thumb_image": "images/5.jpg",
-                "image": "images/5.jpg",
-                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit.",
-                "template": "post",
-                "stackbit_url_path": "/posts/green",
-                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit. Tincidunt id aliquet risus feugiat in ante. Non diam phasellus vestibulum lorem sed. Morbi quis commodo odio aenean. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Vel eros donec ac odio tempor orci dapibus ultrices. Facilisi morbi tempus iaculis urna id volutpat. Luctus accumsan tortor posuere ac. Sagittis orci a scelerisque purus semper eget. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Dolor purus non enim praesent. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Aliquam vestibulum morbi blandit cursus risus.\n\nScelerisque fermentum dui faucibus in ornare quam viverra orci. Libero justo laoreet sit amet cursus. Gravida rutrum quisque non tellus orci. Ut sem nulla pharetra diam sit amet nisl suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Urna porttitor rhoncus dolor purus. Quisque non tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin. Vitae semper quis lectus nulla at volutpat. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Porta nibh venenatis cras sed felis eget velit. Ullamcorper malesuada proin libero nunc consequat interdum. Enim sed faucibus turpis in eu mi bibendum neque egestas. Facilisi morbi tempus iaculis urna. Rhoncus est pellentesque elit ullamcorper dignissim. Aenean et tortor at risus viverra adipiscing at in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Sit amet aliquam id diam. Ut tristique et egestas quis ipsum suspendisse. Congue quisque egestas diam in arcu cursus.\n\nMattis enim ut tellus elementum sagittis. At volutpat diam ut venenatis tellus in metus vulputate eu. Habitant morbi tristique senectus et. Id aliquet lectus proin nibh nisl condimentum id venenatis. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Lectus vestibulum mattis ullamcorper velit sed. Semper viverra nam libero justo. Purus sit amet luctus venenatis. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Feugiat nibh sed pulvinar proin gravida.\n"
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/interior-designer.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "How To Choose An Interior Designer",
-                "subtitle": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”.",
-                "date": "2017-03-26",
-                "thumb_image": "images/1.jpg",
-                "excerpt": "Interior design is “the art or process of designing the interior, often including the exterior, of a room or building”. An interior designer is someone who coordinates and manages such projects.",
-                "template": "post",
-                "stackbit_url_path": "/posts/interior-designer",
-                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/street-photography.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "Understanding Street Photography",
-                "date": "2019-03-10",
-                "thumb_image": "images/8.jpg",
-                "image": "images/8.jpg",
-                "excerpt": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra.",
-                "template": "post",
-                "stackbit_url_path": "/posts/street-photography",
-                "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ac ut consequat semper viverra nam libero justo laoreet sit. Tincidunt id aliquet risus feugiat in ante. Non diam phasellus vestibulum lorem sed. Morbi quis commodo odio aenean. Tortor aliquam nulla facilisi cras fermentum odio eu feugiat. Vel eros donec ac odio tempor orci dapibus ultrices. Facilisi morbi tempus iaculis urna id volutpat. Luctus accumsan tortor posuere ac. Sagittis orci a scelerisque purus semper eget. Ultricies mi quis hendrerit dolor magna eget est lorem ipsum. Dolor purus non enim praesent. Lorem sed risus ultricies tristique nulla aliquet enim tortor. Aliquam vestibulum morbi blandit cursus risus.\n\nScelerisque fermentum dui faucibus in ornare quam viverra orci. Libero justo laoreet sit amet cursus. Gravida rutrum quisque non tellus orci. Ut sem nulla pharetra diam sit amet nisl suscipit. Lorem ipsum dolor sit amet consectetur adipiscing elit. Urna porttitor rhoncus dolor purus. Quisque non tellus orci ac auctor augue mauris augue. Consectetur adipiscing elit duis tristique sollicitudin. Vitae semper quis lectus nulla at volutpat. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Porta nibh venenatis cras sed felis eget velit. Ullamcorper malesuada proin libero nunc consequat interdum. Enim sed faucibus turpis in eu mi bibendum neque egestas. Facilisi morbi tempus iaculis urna. Rhoncus est pellentesque elit ullamcorper dignissim. Aenean et tortor at risus viverra adipiscing at in. Cursus euismod quis viverra nibh cras pulvinar mattis nunc sed. Sit amet aliquam id diam. Ut tristique et egestas quis ipsum suspendisse. Congue quisque egestas diam in arcu cursus.\n\nMattis enim ut tellus elementum sagittis. At volutpat diam ut venenatis tellus in metus vulputate eu. Habitant morbi tristique senectus et. Id aliquet lectus proin nibh nisl condimentum id venenatis. Nec tincidunt praesent semper feugiat nibh sed pulvinar. Lectus vestibulum mattis ullamcorper velit sed. Semper viverra nam libero justo. Purus sit amet luctus venenatis. Massa id neque aliquam vestibulum morbi blandit cursus risus at. Feugiat nibh sed pulvinar proin gravida."
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/why-fonts-matter.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "Why Fonts Matter",
-                "date": "2019-03-27",
-                "thumb_image": "images/12.jpg",
-                "image": "images/12.jpg",
-                "excerpt": "Amet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem.",
-                "template": "post",
-                "stackbit_url_path": "/posts/why-fonts-matter",
-                "content": "\n**Donec neque lorem**, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat.\n\nPhasellus commodo dolor sit amet, consectetur adipiscing elit. Nam a finibus magna. Sed et pulvinar dolor. Suspendisse vitae iaculis lacus. Proin vulputate, leo eget pulvinar faucibus, felis est condimentum lorem, in rhoncus neque felis ac leo. Duis felis lectus, ultrices id dolor vel, tincidunt tristique nunc. Nullam quis orci magna. Proin eget nunc et dolor hendrerit eleifend. Praesent a vehicula justo, quis convallis lacus. Phasellus porttitor, turpis vel placerat condimentum, urna felis volutpat ligula, et ultricies arcu mi ac nisl. Cras id consectetur ligula, et mollis odio. Aenean erat dui, congue vitae nisi a, aliquet lobortis eros.\n\n> The beauty of type lies in its utility, prettiness without readability serves neither author nor reader. - James Felici\n\nSed augue lorem, porta nec lorem et, luctus egestas nunc. Sed in tellus at enim commodo pharetra. Mauris nisi ipsum, auctor nec justo non, lobortis ullamcorper magna. Pellentesque posuere posuere dolor, quis egestas est ultrices id. Cras at urna lectus. Curabitur in placerat ligula. Phasellus pharetra scelerisque lectus, id sagittis lorem pretium eget. Phasellus commodo nunc ante, nec commodo urna iaculis eu. Pellentesque euismod et ante quis vestibulum. Ut quis sapien nisi. Sed interdum sit amet sem et vestibulum. Maecenas tempor dictum leo, quis rutrum purus tincidunt vitae. Fusce vel turpis risus. Donec congue accumsan tempus. Nunc nec elit magna. Aenean luctus auctor ligula at lacinia.\n\nDonec neque lorem, sodales non fermentum et, aliquam quis erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla tincidunt justo eu ante ultrices posuere. Duis cursus at massa ac tempus. Morbi sit amet mi sit amet lorem ullamcorper feugiat ac et dolor. Nullam rhoncus urna tincidunt odio ultricies, at dapibus felis facilisis. Ut condimentum nulla eget feugiat finibus. Suspendisse sit amet purus a eros dignissim commodo ut a erat. Maecenas pretium velit faucibus, porttitor lacus eu, eleifend sapien. In hac habitasse platea dictumst. Pellentesque nisi nisl, consectetur a accumsan sit amet, finibus vel nibh. Vivamus aliquet urna non turpis vehicula maximus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.\n"
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/working-from-home.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "The Advantages and Disadvantages of Working from Home",
-                "date": "2016-08-22",
-                "thumb_image": "images/9.jpg",
-                "image": "images/9.jpg",
-                "excerpt": "Interdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit.",
-                "template": "post",
-                "stackbit_url_path": "/posts/working-from-home",
-                "content": "\nInterdum posuere lorem ipsum dolor sit amet consectetur. Odio morbi quis commodo odio aenean sed adipiscing diam donec. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Porttitor massa id neque aliquam vestibulum morbi blandit cursus. Vitae aliquet nec ullamcorper sit. Gravida arcu ac tortor dignissim convallis aenean. Quisque sagittis purus sit amet volutpat consequat mauris nunc congue. Est ultricies integer quis auctor. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Vel risus commodo viverra maecenas accumsan lacus. Donec adipiscing tristique risus nec feugiat in fermentum. Habitasse platea dictumst quisque sagittis purus sit. Quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Id leo in vitae turpis massa sed. Auctor elit sed vulputate mi sit. Gravida arcu ac tortor dignissim convallis aenean et.\n\n## Types Of Work\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Auctor augue mauris augue neque gravida in fermentum et. Eget mi proin sed libero enim sed faucibus turpis in. Semper auctor neque vitae tempus. Nibh nisl condimentum id venenatis a condimentum vitae sapien. Et malesuada fames ac turpis egestas sed tempus urna. Tristique magna sit amet purus gravida. Lobortis elementum nibh tellus molestie. Natoque penatibus et magnis dis parturient montes nascetur. Lacus sed viverra tellus in hac habitasse platea. Duis ultricies lacus sed turpis tincidunt id aliquet risus. Vitae congue eu consequat ac felis donec et. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida. Lobortis mattis aliquam faucibus purus in massa tempor nec feugiat. In nibh mauris cursus mattis molestie. Proin libero nunc consequat interdum varius sit amet. Molestie at elementum eu facilisis sed odio morbi quis commodo.\n\nVitae congue mauris rhoncus aenean vel elit scelerisque mauris. Ac tincidunt vitae semper quis lectus nulla at volutpat diam. Eget arcu dictum varius duis at consectetur lorem. Nec ullamcorper sit amet risus nullam eget felis. Laoreet non curabitur gravida arcu ac tortor. Cursus metus aliquam eleifend mi in. Faucibus vitae aliquet nec ullamcorper sit amet. Consectetur a erat nam at lectus urna. Porttitor eget dolor morbi non arcu risus quis varius quam. Condimentum mattis pellentesque id nibh tortor id aliquet. Augue neque gravida in fermentum..\n"
-            }
-        },
-        {
-            "modelType": "page",
-            "modelName": "post",
-            "relPath": "posts/workplace.md",
-            "data": {
-                "stackbit_model_type": "page",
-                "title": "The Elements of Great Workplace Design",
-                "date": "2019-03-24",
-                "thumb_image": "images/11.jpg",
-                "image": "images/11.jpg",
-                "excerpt": "Vis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo.",
-                "template": "post",
-                "stackbit_url_path": "/posts/workplace",
-                "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
-            }
-        },
-        {
-            "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-1.md",
+            "relPath": "portfolio/project-1.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 1",
@@ -3365,14 +3502,14 @@
                 "thumb_image": "images/1_thumb.jpg",
                 "image": "images/1.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-1",
+                "stackbit_url_path": "/portfolio/project-1",
                 "content": "\nVis accumsan feugiat adipiscing nisl amet adipiscing accumsan blandit accumsan sapien blandit ac amet faucibus aliquet placerat commodo. Interdum ante aliquet commodo accumsan vis phasellus adipiscing. Ornare a in lacinia. Vestibulum accumsan ac metus massa tempor. Accumsan in lacinia ornare massa amet. Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan.\n\n>\"A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away.\" -Antoine de Saint-Exupery\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet Ac interdum ac non praesent. Cubilia lacinia interdum massa faucibus blandit nullam. Accumsan phasellus nunc integer. Accumsan euismod nunc adipiscing lacinia erat ut sit. Arcu amet. Id massa aliquet arcu accumsan lorem amet accumsan commodo odio cubilia ac eu interdum placerat placerat arcu commodo lobortis adipiscing semper ornare pellentesque.\n\nAmet nibh adipiscing adipiscing. Commodo ante vis placerat interdum massa massa primis. Tempus condimentum tempus non ac varius cubilia adipiscing placerat lorem turpis at. Aliquet lorem porttitor interdum. Amet lacus. Aliquam lobortis faucibus blandit ac phasellus. In amet magna non interdum volutpat porttitor metus a ante ac neque. Nisi turpis. Commodo col. Interdum adipiscing mollis ut aliquam id ante adipiscing commodo integer arcu amet blandit adipiscing arcu ante.\n"
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-2.md",
+            "relPath": "portfolio/project-2.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 2",
@@ -3381,14 +3518,14 @@
                 "thumb_image": "images/2_thumb.jpg",
                 "image": "images/2.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-2",
+                "stackbit_url_path": "/portfolio/project-2",
                 "content": "\nUrna duis convallis convallis tellus. Tincidunt id aliquet risus feugiat in ante metus dictum. Purus faucibus ornare suspendisse sed nisi lacus sed viverra. Vitae purus faucibus ornare suspendisse sed nisi lacus. Porttitor leo a diam sollicitudin tempor id eu nisl nunc. Leo vel fringilla est ullamcorper eget nulla facilisi etiam. Aliquam ut porttitor leo a diam. Dictum at tempor commodo ullamcorper a lacus. Tortor consequat id porta nibh. Felis donec et odio pellentesque diam volutpat commodo. In nibh mauris cursus mattis molestie a iaculis. Morbi tincidunt ornare massa eget egestas purus viverra accumsan. Tempor commodo ullamcorper a lacus vestibulum. Ipsum nunc aliquet bibendum enim facilisis gravida neque.\n\n>\"Every great design begins with an even better story.\" - Lorinda Mamo\n\nTempor orci eu lobortis elementum nibh. Tincidunt dui ut ornare lectus. Sagittis purus sit amet volutpat consequat mauris nunc. Turpis egestas pretium aenean pharetra. Egestas congue quisque egestas diam. Interdum velit euismod in pellentesque massa. Sapien et ligula ullamcorper malesuada proin libero nunc. Elit at imperdiet dui accumsan sit amet nulla. Facilisi nullam vehicula ipsum a. Sit amet tellus cras adipiscing enim eu turpis egestas pretium. Et molestie ac feugiat sed lectus vestibulum mattis ullamcorper.\n\nRisus in hendrerit gravida rutrum quisque. Adipiscing enim eu turpis egestas pretium aenean pharetra magna ac. Urna nec tincidunt praesent semper. Elementum nibh tellus molestie nunc non blandit massa enim. Pharetra diam sit amet nisl suscipit adipiscing bibendum est ultricies. Lorem mollis aliquam ut porttitor. Quam quisque id diam vel quam elementum pulvinar etiam non. Sed tempus urna et pharetra pharetra. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper dignissim. Tempor orci dapibus ultrices in iaculis nunc sed. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl rhoncus. Eu mi bibendum neque egestas congue quisque. Integer quis auctor elit sed vulputate mi sit. Nullam ac tortor vitae purus faucibus ornare suspendisse sed."
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-3.md",
+            "relPath": "portfolio/project-3.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 3",
@@ -3397,14 +3534,14 @@
                 "thumb_image": "images/3_thumb.jpg",
                 "image": "images/3.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-3",
+                "stackbit_url_path": "/portfolio/project-3",
                 "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mus mauris vitae ultricies leo. In vitae turpis massa sed. Mauris nunc congue nisi vitae suscipit tellus mauris a. Phasellus egestas tellus rutrum tellus pellentesque. Nulla facilisi morbi tempus iaculis urna id volutpat. Ac tortor vitae purus faucibus ornare suspendisse sed. Libero volutpat sed cras ornare arcu dui vivamus arcu felis. Suspendisse interdum consectetur libero id. Quisque egestas diam in arcu. Eget gravida cum sociis natoque penatibus et. Ipsum suspendisse ultrices gravida dictum fusce ut placerat orci. Etiam dignissim diam quis enim. Vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor. Ac orci phasellus egestas tellus rutrum tellus pellentesque eu tincidunt. Nulla malesuada pellentesque elit eget gravida cum sociis natoque. Ut venenatis tellus in metus vulputate eu scelerisque felis. Porttitor eget dolor morbi non arcu risus quis varius quam. Volutpat lacus laoreet non curabitur. Vulputate mi sit amet mauris commodo quis imperdiet massa.\n\n>\"Design adds value faster than it adds costs.\" - Joel Spolsky\n\nAmet risus nullam eget felis eget. Quisque egestas diam in arcu cursus euismod quis. Nibh nisl condimentum id venenatis a condimentum. Condimentum vitae sapien pellentesque habitant morbi. Adipiscing bibendum est ultricies integer quis auctor elit. Velit laoreet id donec ultrices. Neque egestas congue quisque egestas diam. Euismod quis viverra nibh cras pulvinar mattis. Lobortis scelerisque fermentum dui faucibus. Arcu felis bibendum ut tristique. Metus vulputate eu scelerisque felis imperdiet proin fermentum. Enim nunc faucibus a pellentesque sit amet porttitor. Nec nam aliquam sem et tortor consequat. Ullamcorper a lacus vestibulum sed arcu non. Semper quis lectus nulla at volutpat. Lectus magna fringilla urna porttitor rhoncus dolor purus non. Neque laoreet suspendisse interdum consectetur libero id faucibus nisl tincidunt. Ut pharetra sit amet aliquam id diam maecenas ultricies. Non pulvinar neque laoreet suspendisse interdum consectetur libero. Morbi tincidunt ornare massa eget.\n\nNetus et malesuada fames ac turpis. Morbi tristique senectus et netus. Tempor commodo ullamcorper a lacus vestibulum sed. Id eu nisl nunc mi ipsum. Sed ullamcorper morbi tincidunt ornare. Tellus in metus vulputate eu scelerisque felis. Ut enim blandit volutpat maecenas volutpat blandit aliquam etiam erat. Neque volutpat ac tincidunt vitae. Enim diam vulputate ut pharetra sit amet aliquam. In eu mi bibendum neque egestas congue quisque egestas. At imperdiet dui accumsan sit. Diam sit amet nisl suscipit. Tellus in metus vulputate eu. Non pulvinar neque laoreet suspendisse interdum consectetur libero. Fusce ut placerat orci nulla pellentesque dignissim. Neque egestas congue quisque egestas diam in arcu."
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-4.md",
+            "relPath": "portfolio/project-4.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 4",
@@ -3413,14 +3550,14 @@
                 "thumb_image": "images/4_thumb.jpg",
                 "image": "images/4.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-4",
+                "stackbit_url_path": "/portfolio/project-4",
                 "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Justo eget magna fermentum iaculis eu non diam. Id volutpat lacus laoreet non. Faucibus pulvinar elementum integer enim. Malesuada fames ac turpis egestas integer eget aliquet nibh. Turpis massa sed elementum tempus. Potenti nullam ac tortor vitae purus faucibus. Duis ut diam quam nulla porttitor massa. Ultrices dui sapien eget mi proin sed libero enim. Nibh venenatis cras sed felis eget velit aliquet. Nec ullamcorper sit amet risus nullam. Duis at tellus at urna. Pulvinar elementum integer enim neque. Amet cursus sit amet dictum sit amet justo. Aliquam nulla facilisi cras fermentum odio eu. Cursus in hac habitasse platea dictumst quisque sagittis. Euismod nisi porta lorem mollis aliquam ut porttitor leo.\n\nEget nunc scelerisque viverra mauris in aliquam sem fringilla. Ornare arcu dui vivamus arcu felis bibendum. Et molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Ut sem nulla pharetra diam sit amet nisl suscipit. Fermentum leo vel orci porta. Facilisis volutpat est velit egestas. Et pharetra pharetra massa massa ultricies mi quis. Id aliquet risus feugiat in ante metus dictum at tempor. Magna fermentum iaculis eu non diam phasellus. Tellus cras adipiscing enim eu turpis egestas.\n\n>\"Designers are meant to be loved, not to be understood.\" - Margaret Oscar\n\nOrci ac auctor augue mauris augue neque. Id semper risus in hendrerit gravida rutrum quisque. Et leo duis ut diam quam nulla porttitor massa. Condimentum vitae sapien pellentesque habitant morbi. Vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Hendrerit dolor magna eget est lorem ipsum dolor sit. Ipsum dolor sit amet consectetur. Eu augue ut lectus arcu bibendum at. Etiam non quam lacus suspendisse. Leo integer malesuada nunc vel. Consequat id porta nibh venenatis. Sollicitudin nibh sit amet commodo nulla facilisi nullam. Aliquam sem fringilla ut morbi tincidunt augue interdum velit euismod. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi etiam.\n\nTortor consequat id porta nibh. Lorem ipsum dolor sit amet consectetur adipiscing elit ut aliquam. Ante metus dictum at tempor. Consectetur adipiscing elit ut aliquam purus. Mauris in aliquam sem fringilla. Sed adipiscing diam donec adipiscing tristique. Posuere ac ut consequat semper viverra nam libero justo. Vulputate ut pharetra sit amet aliquam id diam maecenas ultricies. Molestie nunc non blandit massa enim nec. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Ac turpis egestas integer eget aliquet. Consectetur purus ut faucibus pulvinar elementum integer enim. Quis ipsum suspendisse ultrices gravida dictum fusce. Elit ullamcorper dignissim cras tincidunt lobortis. Non enim praesent elementum facilisis leo vel. Mi ipsum faucibus vitae aliquet nec ullamcorper. Nisl suscipit adipiscing bibendum est ultricies integer quis auctor elit. Senectus et netus et malesuada fames. Massa sed elementum tempus egestas sed sed.\n"
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-5.md",
+            "relPath": "portfolio/project-5.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 5",
@@ -3429,14 +3566,14 @@
                 "thumb_image": "images/5_thumb.jpg",
                 "image": "images/5.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-5",
+                "stackbit_url_path": "/portfolio/project-5",
                 "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nulla facilisi morbi tempus iaculis urna. Non curabitur gravida arcu ac tortor dignissim. Pretium quam vulputate dignissim suspendisse in est. Ante in nibh mauris cursus mattis. Adipiscing bibendum est ultricies integer quis auctor elit sed vulputate. Facilisi nullam vehicula ipsum a arcu cursus. Habitant morbi tristique senectus et. Urna duis convallis convallis tellus id interdum velit. Sociis natoque penatibus et magnis. Adipiscing tristique risus nec feugiat in fermentum posuere.\n\n>\"You can't use up creativity. The more you use, the more you have.\" - Maya Angelou\n\nFeugiat in fermentum posuere urna nec tincidunt praesent semper. Bibendum enim facilisis gravida neque convallis a. Diam donec adipiscing tristique risus nec feugiat in fermentum. Vitae suscipit tellus mauris a diam. Sit amet aliquam id diam maecenas. Id velit ut tortor pretium viverra suspendisse. Massa tincidunt dui ut ornare lectus sit amet est. Dui vivamus arcu felis bibendum ut tristique et egestas quis. Purus sit amet volutpat consequat mauris nunc congue nisi. Et netus et malesuada fames ac. Sed faucibus turpis in eu. Pharetra pharetra massa massa ultricies. Non enim praesent elementum facilisis leo vel fringilla est ullamcorper. Quis hendrerit dolor magna eget est.\n\nElit pellentesque habitant morbi tristique senectus et netus et. Cras adipiscing enim eu turpis egestas pretium aenean pharetra magna. Turpis egestas pretium aenean pharetra magna ac placerat. Suspendisse sed nisi lacus sed viverra tellus in. Lectus arcu bibendum at varius vel pharetra vel turpis. Scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Donec pretium vulputate sapien nec sagittis. Ipsum a arcu cursus vitae congue mauris rhoncus aenean. Sed euismod nisi porta lorem. Semper quis lectus nulla at. Tincidunt ornare massa eget egestas purus viverra accumsan in nisl. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio eu. Aliquam sem et tortor consequat id porta. Aliquam ut porttitor leo a diam sollicitudin tempor id eu. Ipsum dolor sit amet consectetur adipiscing elit.\n\n"
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-6.md",
+            "relPath": "portfolio/project-6.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 6",
@@ -3445,14 +3582,14 @@
                 "thumb_image": "images/6_thumb.jpg",
                 "image": "images/6.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-6",
+                "stackbit_url_path": "/portfolio/project-6",
                 "content": "\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Suspendisse faucibus interdum posuere lorem ipsum dolor. Malesuada fames ac turpis egestas sed tempus urna et. Non odio euismod lacinia at quis risus. Nisl vel pretium lectus quam id leo in vitae turpis. Dolor sit amet consectetur adipiscing elit ut. Id donec ultrices tincidunt arcu non sodales neque sodales ut. Risus ultricies tristique nulla aliquet enim. Nulla aliquet porttitor lacus luctus accumsan tortor posuere ac ut. Et leo duis ut diam. Auctor neque vitae tempus quam pellentesque. Scelerisque in dictum non consectetur a erat nam at. Quisque sagittis purus sit amet volutpat consequat. Vulputate enim nulla aliquet porttitor lacus.\n\n>\"Design can be art. Design can be aesthetics. Design is so simple, that's why it is so complicated.\" - Paul Rand,\n\nNisl purus in mollis nunc sed id semper. Congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Etiam erat velit scelerisque in dictum non consectetur. Tincidunt praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Cursus eget nunc scelerisque viverra mauris in aliquam sem. Aliquam id diam maecenas ultricies mi eget mauris pharetra. Nisi quis eleifend quam adipiscing vitae proin sagittis nisl. Elit at imperdiet dui accumsan. Senectus et netus et malesuada fames ac turpis. Justo nec ultrices dui sapien eget mi proin sed libero. Aliquet eget sit amet tellus cras adipiscing enim eu turpis. Nisl purus in mollis nunc sed id. Elit duis tristique sollicitudin nibh sit. Duis ultricies lacus sed turpis. Porttitor eget dolor morbi non. Scelerisque eu ultrices vitae auctor eu augue ut. At urna condimentum mattis pellentesque id. Massa eget egestas purus viverra accumsan. Fermentum dui faucibus in ornare quam. Pharetra vel turpis nunc eget lorem.\n\nSodales neque sodales ut etiam sit amet nisl. Sodales ut etiam sit amet nisl purus. Nisi vitae suscipit tellus mauris a diam maecenas sed. Egestas purus viverra accumsan in nisl nisi scelerisque. Gravida cum sociis natoque penatibus et magnis dis parturient. In hac habitasse platea dictumst vestibulum. Cras semper auctor neque vitae tempus quam pellentesque nec nam. Tellus integer feugiat scelerisque varius morbi enim nunc. Ultricies mi eget mauris pharetra et ultrices neque ornare. Vitae suscipit tellus mauris a diam. Commodo viverra maecenas accumsan lacus vel. Libero id faucibus nisl tincidunt eget nullam.\n\nNibh praesent tristique magna sit amet purus gravida. Aenean pharetra magna ac placerat vestibulum lectus mauris. Nulla aliquet enim tortor at auctor. Lobortis elementum nibh tellus molestie. Vitae proin sagittis nisl rhoncus mattis. Velit scelerisque in dictum non consectetur a erat. Elementum curabitur vitae nunc sed. Nisl nisi scelerisque eu ultrices vitae auctor eu. Proin libero nunc consequat interdum varius sit. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Turpis cursus in hac habitasse. Adipiscing elit pellentesque habitant morbi tristique.\n"
             }
         },
         {
             "modelType": "page",
             "modelName": "project",
-            "relPath": "projects/project-7.md",
+            "relPath": "portfolio/project-7.md",
             "data": {
                 "stackbit_model_type": "page",
                 "title": "Project Title 7",
@@ -3461,7 +3598,7 @@
                 "thumb_image": "images/7_thumb.jpg",
                 "image": "images/7.jpg",
                 "template": "project",
-                "stackbit_url_path": "/projects/project-7",
+                "stackbit_url_path": "/portfolio/project-7",
                 "content": "\nDiam maecenas sed enim ut sem. Nisl purus in mollis nunc sed id semper. Dictum sit amet justo donec enim diam vulputate ut pharetra. Eget velit aliquet sagittis id consectetur purus ut. Auctor neque vitae tempus quam pellentesque nec. Sed enim ut sem viverra aliquet eget. Eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada. Enim tortor at auctor urna nunc id cursus. Fermentum et sollicitudin ac orci phasellus. Nunc non blandit massa enim nec dui. Cursus euismod quis viverra nibh cras pulvinar. Accumsan in nisl nisi scelerisque eu ultrices vitae auctor. Dui vivamus arcu felis bibendum ut.\n\nSed risus pretium quam vulputate dignissim suspendisse in est. Vitae auctor eu augue ut lectus arcu. Tristique magna sit amet purus. Aliquet enim tortor at auctor urna nunc. Id leo in vitae turpis massa sed elementum tempus. Egestas maecenas pharetra convallis posuere morbi leo urna molestie at. Amet consectetur adipiscing elit duis tristique sollicitudin. Egestas sed sed risus pretium quam vulputate. Nunc eget lorem dolor sed viverra ipsum nunc. Consequat mauris nunc congue nisi vitae suscipit tellus. Fames ac turpis egestas maecenas pharetra convallis posuere morbi leo. Et ultrices neque ornare aenean euismod elementum nisi quis. Varius morbi enim nunc faucibus a pellentesque sit amet. Vitae proin sagittis nisl rhoncus mattis rhoncus urna. In mollis nunc sed id semper risus in hendrerit gravida.\n\n>\"Design is not a single object or dimension. Design is messy and complex.\" - Natasha Jen\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Morbi tincidunt augue interdum velit euismod in. Justo laoreet sit amet cursus sit amet dictum sit. Viverra aliquet eget sit amet. Scelerisque varius morbi enim nunc faucibus a pellentesque sit. Lectus nulla at volutpat diam ut venenatis tellus. Nunc consequat interdum varius sit. Ultrices neque ornare aenean euismod elementum. Ante metus dictum at tempor commodo. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit. Etiam non quam lacus suspendisse faucibus interdum posuere lorem.\n\nAliquet nibh praesent tristique magna sit amet purus. Tincidunt nunc pulvinar sapien et ligula ullamcorper. Lacus sed viverra tellus in. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate. Bibendum neque egestas congue quisque egestas diam in. Iaculis nunc sed augue lacus viverra. Sagittis orci a scelerisque purus. Cursus mattis molestie a iaculis at erat pellentesque adipiscing commodo. Vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. Arcu dictum varius duis at. Eleifend mi in nulla posuere sollicitudin aliquam ultrices. Velit scelerisque in dictum non consectetur a erat nam at. Cum sociis natoque penatibus et magnis dis parturient montes nascetur. Adipiscing commodo elit at imperdiet dui. Sed tempus urna et pharetra pharetra. Imperdiet sed euismod nisi porta lorem mollis aliquam ut. Ultricies mi eget mauris pharetra et ultrices neque. Et malesuada fames ac turpis egestas sed tempus urna et. At tempor commodo ullamcorper a.\n"
             }
         },
