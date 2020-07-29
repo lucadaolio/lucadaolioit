@@ -3385,7 +3385,7 @@
                         "layout_style": "mosaic",
                         "projects_number": 6,
                         "view_all_label": "View All",
-                        "view_all_url": "portfolio/index.html",
+                        "view_all_url": "portfolio",
                         "stackbit_model_type": "object"
                     },
                     {
@@ -3465,7 +3465,7 @@
                             {
                                 "type": "action",
                                 "label": "View Blog",
-                                "url": "blog/index.html",
+                                "url": "blog",
                                 "style": "button",
                                 "stackbit_model_type": "object"
                             }
